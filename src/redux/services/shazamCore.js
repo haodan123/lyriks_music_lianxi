@@ -7,7 +7,7 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 //     'X-RapidAPI-Host': 'shazam-core.p.rapidapi.com',
 //   },
 // };
-
+// 接口网站地址： https://rapidapi.com/zh/tipsters/api/shazam-core/
 export const shazamCoreApi = createApi({
   reducerPath: 'shazamCoreApi',
   baseQuery: fetchBaseQuery({
@@ -18,6 +18,10 @@ export const shazamCoreApi = createApi({
     },
   }),
   endpoints: (builder) => ({
+    // 搜索页面
+    getSongsBySearch: builder.query({ query: (searchTerm) => `/search/multi?search_type=SONGS_ARTISTS&query=${searchTerm}` }),
+    // 下拉框
+    getSongsByGenre: builder.query({ query: (genre) => `/charts/genre-world?genre_code=${genre}` }),
     // 获取首页歌曲
     getTopCharts: builder.query({ query: () => '/charts/world' }),
     // 根据id获取歌曲
@@ -33,6 +37,8 @@ export const shazamCoreApi = createApi({
 });
 
 export const {
+  useGetSongsBySearchQuery,
+  useGetSongsByGenreQuery,
   useGetTopChartsQuery,
   useGetSongDetailsQuery,
   useGetSongRelatedQuery,

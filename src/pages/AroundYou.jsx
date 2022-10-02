@@ -14,6 +14,7 @@ const AroundYou = () => {
   // console.log(data, country);
 
   useEffect(() => {
+    //     // 接口网站地址 ： https://geo.ipify.org/docs
     axios.get('https://geo.ipify.org/api/v2/country?apiKey=at_62MxjIQI1nu51JA6eQ5GoLxbcvomC')
       .then((res) => setCountry(res?.data?.location?.country))
       .catch((err) => console.log(err))
